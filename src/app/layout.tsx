@@ -5,11 +5,13 @@ import "./globals.css";
 const headline = Plus_Jakarta_Sans({
   variable: "--font-headline",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 const body = Be_Vietnam_Pro({
   variable: "--font-body",
   subsets: ["latin", "vietnamese"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
