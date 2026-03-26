@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Be+Vietnam+Pro:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-on-surface": "#f7f1d9",
+              "on-tertiary-fixed-variant": "#1f5100",
+              "error": "#ba1a1a",
+              "secondary-fixed-dim": "#6be026",
+              "on-tertiary-container": "#3f9600",
+              "surface-container-high": "#eee8d1",
+              "on-secondary-container": "#2d7100",
+              "on-surface-variant": "#4c4546",
+              "on-error": "#ffffff",
+              "surface-container-low": "#faf4dc",
+              "on-secondary-fixed": "#082100",
+              "surface-dim": "#e0dac3",
+              "on-surface": "#1e1c0e",
+              "secondary-fixed": "#87fe45",
+              "secondary-container": "#84fb42",
+              "inverse-surface": "#333121",
+              "on-background": "#1e1c0e",
+              "surface": "#fff9e6",
+              "tertiary-fixed-dim": "#6be026",
+              "on-primary-fixed-variant": "#474747",
+              "primary-fixed": "#e2e2e2",
+              "on-error-container": "#93000a",
+              "tertiary-container": "#082100",
+              "on-primary-container": "#848484",
+              "background": "#fff9e6",
+              "error-container": "#ffdad6",
+              "primary-fixed-dim": "#c6c6c6",
+              "secondary": "#2b6c00",
+              "inverse-primary": "#c6c6c6",
+              "surface-variant": "#e8e3cb",
+              "on-primary-fixed": "#1b1b1b",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary-fixed-variant": "#1f5100",
+              "primary-container": "#1b1b1b",
+              "primary": "#000000",
+              "tertiary-fixed": "#87fe45",
+              "on-tertiary-fixed": "#082100",
+              "surface-tint": "#5e5e5e",
+              "outline-variant": "#cfc4c5",
+              "surface-bright": "#fff9e6",
+              "tertiary": "#000000",
+              "surface-container": "#f4eed6",
+              "on-tertiary": "#ffffff",
+              "outline": "#7e7576",
+              "on-primary": "#ffffff",
+              "on-secondary": "#ffffff",
+              "surface-container-highest": "#e8e3cb"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Be Vietnam Pro"],
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .ink-wash-bg {
+            background-image: radial-gradient(circle at 80% 20%, rgba(0, 0, 0, 0.03) 0%, transparent 40%),
+                              radial-gradient(circle at 10% 80%, rgba(43, 108, 0, 0.02) 0%, transparent 30%);
+        }
+        .stamp-effect {
+            border: 2px solid currentColor;
+            transform: rotate(-5deg);
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body selection:bg-secondary/20 ink-wash-bg min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#FFF9E6] dark:bg-black/90 backdrop-blur-md border-b-2 border-black/5 flex justify-between items-center px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">arrow_back</span>
+<span class="text-2xl font-black text-black dark:text-white font-headline tracking-tight">Panda Judge</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-highest">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">potted_plant</span>
+<span class="font-headline font-bold text-sm tracking-tight text-black">Level 12</span>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-4xl mx-auto space-y-10">
+<!-- Hero Section -->
+<section class="relative space-y-4">
+<div class="flex justify-between items-start">
+<div class="space-y-1">
+<h1 class="text-6xl font-headline font-extrabold tracking-tighter text-primary">Ephemeral</h1>
+<p class="text-lg font-medium text-on-surface-variant font-headline opacity-60">/əˈfem(ə)rəl/</p>
+</div>
+<div class="stamp-effect px-4 py-1 text-secondary font-headline font-black text-xl uppercase tracking-widest bg-surface-container-lowest">
+                    Mastered
+                </div>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-secondary/10 text-secondary text-xs font-bold rounded-full uppercase tracking-widest">Adjective</span>
+<span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant text-xs font-bold rounded-full uppercase tracking-widest">Formal</span>
+</div>
+</section>
+<!-- Meaning & Examples (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="md:col-span-2 bg-surface-container-lowest p-8 rounded-xl space-y-4 shadow-[0_20px_40px_rgba(30,28,14,0.04)]">
+<h2 class="text-xs font-bold uppercase tracking-widest text-secondary font-headline">The Decree</h2>
+<p class="text-2xl font-medium leading-relaxed">
+                    Lasting for a very short time; transient. Originating from the fleeting nature of existence, often used to describe beauty or moments.
+                </p>
+<div class="pt-6 space-y-4 border-t-2 border-surface-container">
+<div class="flex gap-4">
+<span class="text-secondary font-black text-xl leading-none">“</span>
+<p class="italic text-on-surface-variant">The autumnal colors are beautiful but ephemeral, lasting only a few weeks before the leaves fall.</p>
+</div>
+<div class="flex gap-4">
+<span class="text-secondary font-black text-xl leading-none">“</span>
+<p class="italic text-on-surface-variant">Fashion trends are notoriously ephemeral, changing with the whims of the season.</p>
+</div>
+</div>
+</div>
+<div class="bg-secondary p-8 rounded-xl text-on-secondary flex flex-col justify-between shadow-xl">
+<div class="space-y-2">
+<h2 class="text-xs font-bold uppercase tracking-widest opacity-70 font-headline">Morphology</h2>
+<p class="text-3xl font-headline font-bold">Epi + Hemera</p>
+<p class="text-sm opacity-90 leading-relaxed font-light italic">From Greek: 'Epi' (upon) + 'Hemera' (day). Literally meaning: 'Lasting only a day'.</p>
+</div>
+<span class="material-symbols-outlined text-5xl opacity-30 self-end">history_edu</span>
+</div>
+</div>
+<!-- Synonyms (Bamboo Slips) -->
+<section class="space-y-4">
+<h2 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant font-headline">Synonyms</h2>
+<div class="flex flex-wrap gap-3">
+<div class="px-6 py-3 bg-surface-container-highest rounded-full border-b-2 border-black/10 font-medium hover:scale-105 transition-transform cursor-pointer">Fleeting</div>
+<div class="px-6 py-3 bg-surface-container-highest rounded-full border-b-2 border-black/10 font-medium hover:scale-105 transition-transform cursor-pointer">Brief</div>
+<div class="px-6 py-3 bg-surface-container-highest rounded-full border-b-2 border-black/10 font-medium hover:scale-105 transition-transform cursor-pointer">Evanescent</div>
+<div class="px-6 py-3 bg-surface-container-highest rounded-full border-b-2 border-black/10 font-medium hover:scale-105 transition-transform cursor-pointer">Fugacious</div>
+<div class="px-6 py-3 bg-surface-container-highest rounded-full border-b-2 border-black/10 font-medium hover:scale-105 transition-transform cursor-pointer">Momentary</div>
+</div>
+</section>
+<!-- AI Spotlight (Creative Cards) -->
+<section class="space-y-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h2 class="text-xl font-headline font-extrabold tracking-tight">AI Spotlight</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Lyric Card -->
+<div class="bg-black text-white p-8 rounded-2xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary/20 rounded-full blur-3xl -mr-16 -mt-16"></div>
+<div class="relative z-10 space-y-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">music_note</span>
+<span class="text-xs font-bold uppercase tracking-widest text-secondary">Lyric Anthology</span>
+</div>
+<p class="text-xl font-headline font-medium leading-snug italic">"But I'm a fire and I'll keep your brittle heart warm, if your cascade ocean wave blues come. All these people think love's for show, but I would die for you in secret."</p>
+<div class="flex items-center gap-3 border-t border-white/10 pt-4">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="vibrant stage lighting with a silhouette of a female pop singer performing with a microphone under a spotlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN7HyICt2GTCk7u2QCetHVOCJXX5c8f9VsTLCOBtLuzgoSdlmlXJcQE8xT-Ssur8x1iMQgPiApeidQ_jBuaUECAYxHm96SIfYYvkM6WCmPFJ3b0v7TxjqOYJsBFzK7pM2NV8pvYRoHyoPdJ4t2MmqCYKhsUzeGWSYlItsekaDcMNB7aWtdJ-xUGk-swye6cs0jWd8OajAfua1AElm_MzsSevCAZaIPTJ8iz1E_wHR98qeif9xwIYG18t4XPeR7NAM-Yt3bA4298mLg"/>
+<div>
+<p class="text-sm font-bold">Peace</p>
+<p class="text-xs opacity-60">Taylor Swift • Folklore</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Cinema Card -->
+<div class="bg-surface-container-low p-2 rounded-2xl flex flex-col shadow-lg border border-white/50">
+<div class="relative rounded-xl overflow-hidden aspect-video">
+<img class="w-full h-full object-cover" data-alt="cinematic shot of a rotating silver spinning top on a dark wooden table with dramatic film grain and soft bokeh" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRc_wTSVW8QvtJIzRaveUxy1K3Ej1QrETXRHS6cKqs71dT4NrJn4_ABjAzeaJQxFwCDMCxyp6dLwyrmKu6t_jLnHMS-C42lfkilOFpmgoI6CCMdDLUV6_wjpdcAX3soGJcgDb1PfdZmkICsq7umLXjlZ6DdCe5t0zq9C7nKED3fCfs_Vxil0PLuQncIops7RGzqsGkLeZTpitn58tW7QkqiO1qy-Gh0pWfgWd0_eQXVmQ7NSXrbMvng0dZ2wrx_FWSF_nGBqD0L8K1"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+<p class="text-white text-lg font-headline font-medium italic">"Dreams feel real while we're in them. It's only when we wake up that we realize something was actually strange."</p>
+</div>
+</div>
+<div class="p-4 flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">movie</span>
+<span class="text-xs font-bold font-headline">INCEPTION</span>
+</div>
+<span class="text-[10px] uppercase font-bold tracking-tighter opacity-40">Christopher Nolan • 2010</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Related Words (Clean List) -->
+<section class="space-y-4">
+<h2 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant font-headline">The Progeny (Related)</h2>
+<div class="bg-surface-container-low rounded-2xl divide-y divide-black/5">
+<div class="p-5 flex justify-between items-center hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-2 h-8 bg-secondary/30 rounded-full group-hover:h-10 transition-all"></div>
+<div>
+<p class="font-headline font-bold text-lg">Ethereal</p>
+<p class="text-xs text-on-surface-variant">Extremely delicate and light</p>
+</div>
+</div>
+<span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</div>
+<div class="p-5 flex justify-between items-center hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-2 h-8 bg-black/5 rounded-full group-hover:h-10 transition-all"></div>
+<div>
+<p class="font-headline font-bold text-lg">Temporal</p>
+<p class="text-xs text-on-surface-variant">Relating to time as opposed to eternity</p>
+</div>
+</div>
+<span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</div>
+<div class="p-5 flex justify-between items-center hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-2 h-8 bg-black/5 rounded-full group-hover:h-10 transition-all"></div>
+<div>
+<p class="font-headline font-bold text-lg">Deciduous</p>
+<p class="text-xs text-on-surface-variant">Shedding its leaves annually</p>
+</div>
+</div>
+<span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-[#FFF9E6] dark:bg-black rounded-t-[2rem] border-t-2 border-black/5 shadow-[0_-10px_30px_rgba(30,28,14,0.08)] flex justify-around items-center pb-6 pt-3 px-4">
+<div class="flex flex-col items-center justify-center text-black/40 dark:text-white/40 px-4 py-2 hover:text-black transition-colors">
+<span class="material-symbols-outlined">description</span>
+<span class="font-['Be_Vietnam_Pro'] text-xs font-semibold">Study</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-[#2B6C00] text-white rounded-xl px-5 py-2 scale-110 shadow-lg">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="font-['Be_Vietnam_Pro'] text-xs font-semibold">Library</span>
+</div>
+<div class="flex flex-col items-center justify-center text-black/40 dark:text-white/40 px-4 py-2 hover:text-black transition-colors">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="font-['Be_Vietnam_Pro'] text-xs font-semibold">Ranks</span>
+</div>
+<div class="flex flex-col items-center justify-center text-black/40 dark:text-white/40 px-4 py-2 hover:text-black transition-colors">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Be_Vietnam_Pro'] text-xs font-semibold">Profile</span>
+</div>
+</nav>
+</body></html>
