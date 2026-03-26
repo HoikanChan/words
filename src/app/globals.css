@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #000000;
+  --bamboo: #2b6c00;
+  --parchment: #fff9e6;
+  --surface: #fff9e6;
+  --surface-low: #faf4dc;
+  --surface-high: #e8e3cb;
+  --paper: #ffffff;
+  --muted: #5a5445;
+}
+
+@theme inline {
+  --color-background: var(--surface);
+  --color-foreground: var(--ink);
+  --color-ink: var(--ink);
+  --color-bamboo: var(--bamboo);
+  --color-parchment: var(--parchment);
+  --color-surface: var(--surface);
+  --color-surface-low: var(--surface-low);
+  --color-surface-high: var(--surface-high);
+  --color-paper: var(--paper);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-body);
+  --font-body: var(--font-body);
+  --font-headline: var(--font-headline);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background:
+    radial-gradient(circle at top right, rgba(43, 108, 0, 0.06), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(0, 0, 0, 0.04), transparent 24%),
+    var(--surface);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+.font-headline {
+  font-family: var(--font-headline), sans-serif;
+}
+
+.font-body {
+  font-family: var(--font-body), sans-serif;
+}
+
+.paper-card {
+  background: var(--paper);
+  box-shadow: 0 20px 40px rgba(30, 28, 14, 0.06);
+}
+
+.section-card {
+  background: var(--surface-low);
+}
+
+.stamp-button {
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+
+.stamp-button:hover {
+  transform: translateY(-1px) scale(1.01);
+}
+
+.stamp-button:active {
+  transform: scale(0.985);
+}
