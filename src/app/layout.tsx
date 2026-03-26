@@ -1,5 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Be_Vietnam_Pro, Plus_Jakarta_Sans } from "next/font/google";
+import { RegisterServiceWorker } from "@/lib/pwa/register-sw";
+import { APP_DESCRIPTION, APP_NAME } from "@/lib/constants/app";
 import "./globals.css";
 
 const headline = Plus_Jakarta_Sans({
@@ -15,19 +17,26 @@ const body = Be_Vietnam_Pro({
 });
 
 export const metadata: Metadata = {
-  title: "Words",
-  description: "Mobile-first vocabulary learning PWA built with Next.js and Vercel.",
-  applicationName: "Words",
+  title: APP_NAME,
+  description: APP_DESCRIPTION,
+  applicationName: APP_NAME,
+  manifest: "/manifest.webmanifest",
+  appleWebApp: { capable: true, statusBarStyle: "black-translucent", title: APP_NAME },
+  formatDetection: { telephone: false },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport: Viewport = {
+  themeColor: "#000000",
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="zh-CN" className={`${headline.variable} ${body.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-[var(--surface)] text-[var(--ink)] font-body">
+      <body className="min-h-full bg-[var(--surface)] font-body text-[var(--ink)]">
+        <RegisterServiceWorker />
         {children}
       </body>
     </html>

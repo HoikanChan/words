@@ -1,21 +1,21 @@
-import Link from "next/link";
+import { MobileShell } from "@/components/layout/mobile-shell";
+import { PandaBadge } from "@/components/shared/panda-badge";
+import { StartSessionForm } from "@/features/review/start-session-form";
+import { getHomePayload } from "@/server/services/home-service";
 
-export default function ReviewEntryPage() {
+export default async function ReviewEntryPage() {
+  const home = await getHomePayload();
+
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-md flex-col justify-center px-5 py-10">
-      <section className="paper-card rounded-[28px] p-6 text-center">
+    <MobileShell>
+      <header className="mb-6">
         <p className="text-xs font-bold uppercase tracking-[0.24em] text-bamboo/80">Review</p>
-        <h1 className="mt-2 font-headline text-4xl font-black tracking-tight">Session entry</h1>
-        <p className="mt-3 text-base leading-7 text-muted">
-          This route is reserved for initializing a review session before entering the real study flow.
-        </p>
-        <Link
-          href="/review/demo-session"
-          className="stamp-button mt-6 inline-block rounded-[18px] bg-bamboo px-5 py-3 font-headline font-black text-white"
-        >
-          Open demo session
-        </Link>
+        <h1 className="font-headline text-4xl font-black tracking-tight">开卷</h1>
+      </header>
+      <PandaBadge mood="stern" note="一轮只做一件事：选范围，定数量，进场。" />
+      <section className="paper-card mt-5 rounded-[28px] p-5">
+        <StartSessionForm defaultTarget={home.settings.dailyTarget} defaultDeckId={home.decks[0]?.id} decks={home.decks} />
       </section>
-    </main>
+    </MobileShell>
   );
 }
