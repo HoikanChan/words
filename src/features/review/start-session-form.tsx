@@ -50,6 +50,7 @@ export function StartSessionForm({
           value={deckId}
           onChange={(event) => setDeckId(event.target.value)}
         >
+          <option value="">全部词库（不指定）</option>
           {decks.map((deck) => (
             <option key={deck.id} value={deck.id}>{deck.title}</option>
           ))}

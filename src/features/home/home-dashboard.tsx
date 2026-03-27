@@ -80,7 +80,7 @@ export async function HomeDashboard() {
           <h2 className="font-headline text-2xl font-black tracking-tight">开始一轮</h2>
           <span className="text-sm text-muted">目标 {home.settings.dailyTarget}</span>
         </div>
-        <StartSessionForm defaultTarget={home.settings.dailyTarget} defaultDeckId={home.decks[0]?.id} decks={home.decks} />
+        <StartSessionForm defaultTarget={home.settings.dailyTarget} decks={home.decks} />
       </section>
 
       <section className="paper-card mt-5 rounded-[28px] p-5">
