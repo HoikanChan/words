@@ -34,6 +34,11 @@ export function ReviewSessionClient({ initialBundle }: { initialBundle: ReviewSe
       body: JSON.stringify({ wordId: currentWord.id, verdict }),
     });
     const data = await response.json();
+    if (!response.ok || !data.bundle) {
+      setPending(false);
+      return;
+    }
+
     setBundle(data.bundle);
     setShowHint(true);
     setShowExamples(false);
@@ -42,7 +47,9 @@ export function ReviewSessionClient({ initialBundle }: { initialBundle: ReviewSe
     if (!data.bundle.currentWord) {
       const completeResponse = await fetch(`/api/review/${bundle.session.id}/complete`, { method: "POST" });
       const completeData = await completeResponse.json();
-      router.push(`/result/${completeData.result.session.id}`);
+      if (completeResponse.ok && completeData.result?.session?.id) {
+        router.push(`/result/${completeData.result.session.id}`);
+      }
     }
   }
 

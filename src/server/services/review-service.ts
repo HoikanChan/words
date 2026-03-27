@@ -1,4 +1,4 @@
-import type { ResultPayload, ReviewSessionBundle, ReviewVerdict } from "@/types/domain";
+import type { ResultPayload, ReviewSessionBundle, ReviewVerdict, Word } from "@/types/domain";
 import { completeSession, createSession, getSession, submitVerdict } from "../repositories/session-repository";
 import { listWords } from "../repositories/words-repository";
 
@@ -29,9 +29,12 @@ export async function getReviewBundle(sessionId: string): Promise<ReviewSessionB
   if (!session) return null;
 
   const queue = await listWords();
-  const orderedQueue = session.items
-    .map((item) => queue.find((word) => word.id === item.wordId))
-    .filter((word): word is NonNullable<typeof word> => Boolean(word));
+  const orderedQueue: Array<Word & { sessionItemId: string }> = session.items
+    .map((item) => {
+      const word = queue.find((candidate) => candidate.id === item.wordId);
+      return word ? { ...word, sessionItemId: item.id } : null;
+    })
+    .filter((word): word is Word & { sessionItemId: string } => Boolean(word));
 
   const progress = summarize(session);
   const currentWord = orderedQueue[session.currentIndex] ?? null;

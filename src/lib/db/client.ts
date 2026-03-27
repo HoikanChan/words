@@ -1,6 +1,6 @@
 import postgres from "postgres";
 
-const connectionString = process.env.POSTGRES_URL;
+const connectionString = process.env.POSTGRES_URL ?? process.env.POSTGRES_URL_NON_POOLING;
 
 export const hasDatabase = Boolean(connectionString);
 

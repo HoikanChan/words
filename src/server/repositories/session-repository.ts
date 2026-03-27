@@ -1,8 +1,9 @@
 import { randomUUID } from "node:crypto";
 import { DEMO_USER_ID } from "@/lib/constants/app";
 import { hasDatabase, sql } from "@/lib/db/client";
-import { seedSession, seedWords } from "@/lib/db/seed-data";
+import { seedSession } from "@/lib/db/seed-data";
 import type { ReviewSession, ReviewVerdict } from "@/types/domain";
+import { listWords } from "./words-repository";
 
 type SessionRow = Omit<ReviewSession, "items">;
 
@@ -28,7 +29,8 @@ async function getSessionRows(sessionId: string): Promise<ReviewSession | null> 
 }
 
 export async function createSession(targetCount: number, deckId?: string): Promise<ReviewSession> {
-  const queue = (deckId ? seedWords.filter((word) => word.deckId === deckId) : seedWords).slice(0, targetCount);
+  const words = await listWords();
+  const queue = (deckId ? words.filter((word) => word.deckId === deckId) : words).slice(0, targetCount);
   const session: ReviewSession = {
     id: randomUUID(),
     status: "active",
