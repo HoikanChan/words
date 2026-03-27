@@ -1,6 +1,6 @@
 import type { ResultPayload, ReviewSessionBundle, ReviewVerdict, Word } from "@/types/domain";
 import { completeSession, createSession, getSession, submitVerdict } from "../repositories/session-repository";
-import { listWords } from "../repositories/words-repository";
+import { listWordsByIds } from "../repositories/words-repository";
 
 function summarize(session: NonNullable<Awaited<ReturnType<typeof getSession>>>) {
   const known = session.items.filter((item) => item.verdict === "known").length;
@@ -28,10 +28,11 @@ export async function getReviewBundle(sessionId: string): Promise<ReviewSessionB
   const session = await getSession(sessionId);
   if (!session) return null;
 
-  const queue = await listWords();
+  const words = await listWordsByIds(session.items.map((item) => item.wordId));
+  const wordIndex = new Map(words.map((word) => [word.id, word]));
   const orderedQueue: Array<Word & { sessionItemId: string }> = session.items
     .map((item) => {
-      const word = queue.find((candidate) => candidate.id === item.wordId);
+      const word = wordIndex.get(item.wordId);
       return word ? { ...word, sessionItemId: item.id } : null;
     })
     .filter((word): word is Word & { sessionItemId: string } => Boolean(word));
