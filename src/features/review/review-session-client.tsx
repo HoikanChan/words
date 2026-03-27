@@ -16,16 +16,18 @@ const verdictMeta: Record<ReviewVerdict, { en: string; cn: string; className: st
 export function ReviewSessionClient({ initialBundle }: { initialBundle: ReviewSessionBundle }) {
   const router = useRouter();
   const [bundle, setBundle] = useState(initialBundle);
-  const [showHint, setShowHint] = useState(true);
+  const [showHint, setShowHint] = useState(false);
   const [showExamples, setShowExamples] = useState(false);
   const [pending, setPending] = useState(false);
+  const [revealed, setRevealed] = useState(false);
+  const [queuedVerdict, setQueuedVerdict] = useState<ReviewVerdict | null>(null);
 
   const currentWord = bundle.currentWord;
   const done = !currentWord;
   const progressWidth = `${Math.max(bundle.progress.percent, 0.06) * 100}%`;
   const mood = useMemo(() => (bundle.progress.known >= bundle.progress.forgot ? "calm" : "stern"), [bundle]);
 
-  async function answer(verdict: ReviewVerdict) {
+  async function commitVerdict(verdict: ReviewVerdict) {
     if (!currentWord) return;
     setPending(true);
     const response = await fetch(`/api/review/${bundle.session.id}/submit`, {
@@ -40,8 +42,10 @@ export function ReviewSessionClient({ initialBundle }: { initialBundle: ReviewSe
     }
 
     setBundle(data.bundle);
-    setShowHint(true);
+    setShowHint(false);
     setShowExamples(false);
+    setRevealed(false);
+    setQueuedVerdict(null);
     setPending(false);
 
     if (!data.bundle.currentWord) {
@@ -51,6 +55,18 @@ export function ReviewSessionClient({ initialBundle }: { initialBundle: ReviewSe
         router.push(`/result/${completeData.result.session.id}`);
       }
     }
+  }
+
+  function answer(verdict: ReviewVerdict) {
+    if (!currentWord || pending) return;
+    setQueuedVerdict(verdict);
+    setRevealed(true);
+    setShowHint(true);
+  }
+
+  async function nextWord() {
+    if (!queuedVerdict || pending) return;
+    await commitVerdict(queuedVerdict);
   }
 
   if (done) {
@@ -69,7 +85,7 @@ export function ReviewSessionClient({ initialBundle }: { initialBundle: ReviewSe
           <div>
             <div className="text-xs font-bold uppercase tracking-[0.24em] text-muted">Current word</div>
             <h1 className="font-headline text-5xl font-black tracking-tight">{currentWord.term}</h1>
-            <p className="mt-2 text-lg text-muted">{currentWord.shortMeaning} · {currentWord.phonetic}</p>
+            <p className="mt-2 text-lg text-muted">{revealed ? `${currentWord.shortMeaning}${currentWord.phonetic ? ` · ${currentWord.phonetic}` : ""}` : "先自己回忆，再揭晓释义"}</p>
           </div>
           <div className="rounded-full bg-white px-4 py-3 text-sm font-bold">🔊 Audio</div>
         </div>
@@ -97,7 +113,7 @@ export function ReviewSessionClient({ initialBundle }: { initialBundle: ReviewSe
             {showHint ? "收起" : "展开"}
           </button>
         </div>
-        {showHint ? <p className="text-base leading-7 text-muted">{currentWord.hint}</p> : <p className="text-base text-muted">先自己想，再点开。</p>}
+        {showHint ? <p className="text-base leading-7 text-muted">{currentWord.hint}</p> : <p className="text-base text-muted">先自己想，再决定熟悉度。</p>}
         <button className="mt-4 rounded-[18px] bg-[color:var(--surface-low)] px-4 py-3 font-semibold" onClick={() => setShowExamples((value) => !value)}>
           {showExamples ? "隐藏例句" : "展开例句"}
         </button>
@@ -122,6 +138,14 @@ export function ReviewSessionClient({ initialBundle }: { initialBundle: ReviewSe
           </StampButton>
         ))}
       </section>
+
+      {revealed ? (
+        <div className="mt-4">
+          <StampButton className="w-full bg-black text-white" disabled={pending || !queuedVerdict} onClick={nextWord}>
+            {pending ? "落笔中..." : "下一个词"}
+          </StampButton>
+        </div>
+      ) : null}
     </>
   );
 }
