@@ -1,8 +1,8 @@
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import postgres from "postgres";
-import { seedDecks, seedSettings, seedWords } from "../src/lib/db/seed-data.ts";
-import { DEMO_USER_ID } from "../src/lib/constants/app.ts";
+import { seedDecks, seedSettings, seedWords } from "../src/lib/db/seed-data";
+import { DEMO_USER_ID } from "../src/lib/constants/app";
 
 async function main() {
   const url = process.env.POSTGRES_URL;
